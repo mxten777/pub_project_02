@@ -1,18 +1,23 @@
-import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
-import { db } from '../config/firebase';
+// import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
+// import { db } from '../config/firebase';
 import type { MenuItem } from '../types';
 
-const MENU_COLLECTION = 'menu-items';
+// const MENU_COLLECTION = 'menu-items';
 
 export const menuService = {
   // 모든 메뉴 아이템 가져오기
   async getAllMenuItems(): Promise<MenuItem[]> {
     try {
-      const querySnapshot = await getDocs(collection(db, MENU_COLLECTION));
-      return querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      })) as MenuItem[];
+      // Firebase 설정이 완료되지 않았으므로 fallback 메뉴 사용
+      console.log('Firebase 미설정으로 fallback 메뉴 사용');
+      return this.getFallbackMenu();
+      
+      // Firebase 설정 완료시 아래 코드 활성화
+      // const querySnapshot = await getDocs(collection(db, MENU_COLLECTION));
+      // return querySnapshot.docs.map(doc => ({
+      //   id: doc.id,
+      //   ...doc.data()
+      // })) as MenuItem[];
     } catch (error) {
       console.error('메뉴 아이템을 가져오는데 실패했습니다:', error);
       // Fallback 데이터
@@ -23,8 +28,15 @@ export const menuService = {
   // 메뉴 아이템 추가
   async addMenuItem(item: Omit<MenuItem, 'id'>): Promise<string> {
     try {
-      const docRef = await addDoc(collection(db, MENU_COLLECTION), item);
-      return docRef.id;
+      // Firebase 미설정시 로컬 처리 (개발용)
+      console.log('메뉴 아이템 추가 (로컬):', item);
+      const newId = Date.now().toString();
+      // 실제 앱에서는 로컬 상태 업데이트 로직 추가 필요
+      return newId;
+      
+      // Firebase 설정 완료시 아래 코드 활성화
+      // const docRef = await addDoc(collection(db, MENU_COLLECTION), item);
+      // return docRef.id;
     } catch (error) {
       console.error('메뉴 아이템 추가 실패:', error);
       throw error;
@@ -34,8 +46,13 @@ export const menuService = {
   // 메뉴 아이템 업데이트
   async updateMenuItem(id: string, updates: Partial<MenuItem>): Promise<void> {
     try {
-      const docRef = doc(db, MENU_COLLECTION, id);
-      await updateDoc(docRef, updates);
+      // Firebase 미설정시 로컬 처리 (개발용)
+      console.log('메뉴 아이템 업데이트 (로컬):', id, updates);
+      // 실제 앱에서는 로컬 상태 업데이트 로직 추가 필요
+      
+      // Firebase 설정 완료시 아래 코드 활성화
+      // const docRef = doc(db, MENU_COLLECTION, id);
+      // await updateDoc(docRef, updates);
     } catch (error) {
       console.error('메뉴 아이템 업데이트 실패:', error);
       throw error;
@@ -45,8 +62,13 @@ export const menuService = {
   // 메뉴 아이템 삭제
   async deleteMenuItem(id: string): Promise<void> {
     try {
-      const docRef = doc(db, MENU_COLLECTION, id);
-      await deleteDoc(docRef);
+      // Firebase 미설정시 로컬 처리 (개발용)
+      console.log('메뉴 아이템 삭제 (로컬):', id);
+      // 실제 앱에서는 로컬 상태 업데이트 로직 추가 필요
+      
+      // Firebase 설정 완료시 아래 코드 활성화
+      // const docRef = doc(db, MENU_COLLECTION, id);
+      // await deleteDoc(docRef);
     } catch (error) {
       console.error('메뉴 아이템 삭제 실패:', error);
       throw error;
