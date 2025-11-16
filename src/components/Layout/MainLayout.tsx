@@ -82,11 +82,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({
             )}
             
             {title ? (
-              <h1 className="text-senior-lg sm:text-senior-2xl lg:text-senior-3xl text-center flex-1 fade-in truncate">
+              <h1 className="text-senior-xl sm:text-senior-3xl lg:text-display-sm font-black text-center flex-1 fade-in truncate bg-gradient-to-r from-lime-600 via-lime-500 to-grape-600 bg-clip-text text-transparent drop-shadow-lg">
                 {title}
               </h1>
             ) : (
-              <h1 className="text-senior-lg sm:text-senior-2xl lg:text-senior-3xl text-center flex-1 fade-in">
+              <h1 className="text-senior-xl sm:text-senior-3xl lg:text-display-sm font-black text-center flex-1 fade-in bg-gradient-to-r from-lime-600 via-lime-500 to-grape-600 bg-clip-text text-transparent drop-shadow-lg">
                 바이브 오더
               </h1>
             )}

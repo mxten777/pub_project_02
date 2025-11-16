@@ -360,6 +360,24 @@
     box-shadow: 0 4px 32px rgba(0,0,0,0.1);
   }
 
+  /* 프리미엄 헤더 타이틀 스타일 */
+  .header-glass h1 {
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background-size: 200% 200%;
+  }
+
+  /* 그라데이션 플로우 애니메이션 */
+  @keyframes gradient-flow {
+    0%, 100% { 
+      background-position: 0% 50%; 
+    }
+    50% { 
+      background-position: 100% 50%; 
+    }
+  }
+
   /* 다크 모드 지원 */
   .dark {
     @apply bg-neutral-900 text-neutral-100;
