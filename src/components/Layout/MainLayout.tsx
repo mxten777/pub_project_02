@@ -91,15 +91,23 @@ const MainLayout: React.FC<MainLayoutProps> = ({
               </h1>
             )}
             
-            {/* 접근성 버튼 */}
-            <button
-              onClick={() => setShowAccessibilityPanel(true)}
-              className="btn-secondary min-w-[44px] min-h-[44px] sm:min-w-[48px] sm:min-h-[48px] flex-shrink-0 flex items-center justify-center"
-              title="접근성 설정"
-              aria-label="접근성 설정"
-            >
-              ⚙️
-            </button>
+            {/* 우측 버튼 그룹 */}
+            <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+              {/* 언어 선택기 공간 */}
+              <div id="language-selector-slot" className="flex items-center">
+                {/* 언어 선택기가 여기에 포털로 렌더링됨 */}
+              </div>
+              
+              {/* 접근성 버튼 */}
+              <button
+                onClick={() => setShowAccessibilityPanel(true)}
+                className="btn-secondary min-w-[44px] min-h-[44px] sm:min-w-[48px] sm:min-h-[48px] flex-shrink-0 flex items-center justify-center"
+                title="접근성 설정"
+                aria-label="접근성 설정"
+              >
+                ⚙️
+              </button>
+            </div>
           </div>
         </div>
       </header>

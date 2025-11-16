@@ -59,10 +59,8 @@ const WelcomePage: React.FC<WelcomePageProps> = ({ onStartOrder }) => {
 
   return (
     <MainLayout title={t('app.title')}>
-      {/* 언어 선택기 */}
-      <div className="absolute top-6 right-6 z-10">
-        <LanguageSelector />
-      </div>
+      {/* 언어 선택기를 헤더에 Portal로 렌더링 */}
+      <LanguageSelector usePortal={true} />
       
       <div className="text-center space-y-8 sm:space-y-12">
         {/* 메인 로고/아이콘 */}
