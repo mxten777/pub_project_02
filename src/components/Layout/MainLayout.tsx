@@ -55,7 +55,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
     min-h-screen transition-all duration-300
     ${settings.highContrast 
       ? 'bg-black text-white high-contrast' 
-      : 'bg-gradient-to-br from-gray-50 to-gray-100'
+      : 'bg-premium-gradient'
     }
     ${isKeyboardUser ? 'keyboard-user' : ''}
     ${settings.fontSize === 'large' ? 'text-lg' : ''}
@@ -64,9 +64,9 @@ const MainLayout: React.FC<MainLayoutProps> = ({
 
   return (
     <div className={rootClasses}>
-      {/* 헤더 */}
-      <header className={`shadow-senior border-b-4 border-blue-500 ${
-        settings.highContrast ? 'bg-gray-900' : 'bg-white'
+      {/* 프리미엄 글래스모피즘 헤더 */}
+      <header className={`${
+        settings.highContrast ? 'bg-gray-900' : 'header-glass'
       }`}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
           <div className="flex items-center justify-between gap-2 sm:gap-4">

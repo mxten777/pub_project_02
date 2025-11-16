@@ -25,7 +25,31 @@ export default {
         'display-lg': ['72px', { lineHeight: '80px', letterSpacing: '-0.03em' }],
       },
       colors: {
-        // 프리미엄 색상 팔레트
+        // 프리미엄 연두-보라 투톤 팩레트
+        lime: {
+          50: '#F7FEE7',
+          100: '#ECFCCB', 
+          200: '#D9F99D',
+          300: '#BEF264',
+          400: '#A3E635',
+          500: '#84CC16',
+          600: '#65A30D',
+          700: '#4D7C0F',
+          800: '#365314',
+          900: '#1A2E05'
+        },
+        grape: {
+          50: '#FAF5FF',
+          100: '#F3E8FF',
+          200: '#E9D5FF', 
+          300: '#D8B4FE',
+          400: '#C084FC',
+          500: '#A855F7',
+          600: '#9333EA',
+          700: '#7C3AED',
+          800: '#6B21A8',
+          900: '#4C1D95'
+        },
         primary: {
           25: '#F8FAFC',
           50: '#EFF6FF',
@@ -137,6 +161,20 @@ export default {
         'bounce-gentle': 'bounceGentle 3s ease-in-out infinite',
         'pulse-gentle': 'pulseGentle 2.5s ease-in-out infinite',
         'float': 'float 6s ease-in-out infinite',
+        'gradient-flow': 'gradientFlow 8s ease-in-out infinite',
+      },
+      backgroundImage: {
+        'premium-gradient': 'linear-gradient(135deg, #A3E635 0%, #84CC16 25%, #A855F7 75%, #9333EA 100%)',
+        'lime-purple-radial': 'radial-gradient(ellipse at top left, #A3E635, #84CC16, #A855F7, #9333EA)',
+        'premium-mesh': `
+          radial-gradient(at 40% 20%, #A3E635 0px, transparent 50%),
+          radial-gradient(at 80% 0%, #84CC16 0px, transparent 50%),
+          radial-gradient(at 0% 50%, #A855F7 0px, transparent 50%),
+          radial-gradient(at 80% 50%, #9333EA 0px, transparent 50%),
+          radial-gradient(at 0% 100%, #C084FC 0px, transparent 50%),
+          radial-gradient(at 80% 100%, #BEF264 0px, transparent 50%),
+          radial-gradient(at 0% 0%, #F3E8FF 0px, transparent 50%)
+        `,
       },
       keyframes: {
         fadeIn: {
@@ -159,6 +197,10 @@ export default {
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-4px)' }
+        },
+        gradientFlow: {
+          '0%, 100%': { 'background-position': '0% 50%' },
+          '50%': { 'background-position': '100% 50%' }
         }
       }
     },

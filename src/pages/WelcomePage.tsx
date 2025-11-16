@@ -65,12 +65,13 @@ const WelcomePage: React.FC<WelcomePageProps> = ({ onStartOrder }) => {
       <div className="text-center space-y-8 sm:space-y-12">
         {/* 메인 로고/아이콘 */}
         <div className="mb-8 sm:mb-12 fade-in">
-          <div className="w-28 h-28 sm:w-36 sm:h-36 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full mx-auto mb-6 sm:mb-8 flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 voice-wave">
-            <ShoppingCart size={56} className="text-white sm:hidden" />
-            <ShoppingCart size={72} className="text-white hidden sm:block" />
+          <div className="w-28 h-28 sm:w-36 sm:h-36 bg-gradient-to-br from-lime-400 via-lime-500 to-grape-500 rounded-full mx-auto mb-6 sm:mb-8 flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-500 voice-wave relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-full"></div>
+            <ShoppingCart size={56} className="text-white sm:hidden relative z-10" />
+            <ShoppingCart size={72} className="text-white hidden sm:block relative z-10" />
           </div>
           <h1 
-            className="text-senior-2xl sm:text-senior-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4 sm:mb-6 cursor-pointer hover:scale-105 transition-transform px-4"
+            className="text-senior-2xl sm:text-senior-3xl font-bold bg-gradient-to-r from-lime-600 via-lime-500 to-grape-600 bg-clip-text text-transparent mb-4 sm:mb-6 cursor-pointer hover:scale-105 transition-all duration-500 px-4 drop-shadow-lg"
             onClick={handleTitleClick}
             title="관리자 접근: 5번 클릭"
           >
