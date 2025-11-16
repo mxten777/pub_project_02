@@ -3,8 +3,7 @@ import WelcomePage from './pages/WelcomePage';
 import VoiceOrderPage from './pages/VoiceOrderPage';
 import OrderConfirmPage from './pages/OrderConfirmPage';
 import OrderCompletePage from './pages/OrderCompletePage';
-import AdminPage from './pages/EnhancedAdminPage';
-import AccessibilityPanel from './components/UI/AccessibilityPanel';
+import AdminPage from './pages/AdminPage';
 import { ToastProvider } from './contexts/ToastContext';
 import { LanguageProvider } from './contexts/LanguageContext';
 import LoadingSpinner from './components/UI/LoadingSpinner';
@@ -17,7 +16,6 @@ function App() {
   const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isAccessibilityPanelOpen, setIsAccessibilityPanelOpen] = useState(false);
 
   // 시스템 초기화
   useEffect(() => {
@@ -77,19 +75,6 @@ function App() {
 
   const handleBackToVoiceOrder = () => {
     transitionToStep('voice-order');
-  };
-
-  const handleOpenAccessibilityPanel = () => {
-    setIsAccessibilityPanelOpen(true);
-  };
-
-  const handleCloseAccessibilityPanel = () => {
-    setIsAccessibilityPanelOpen(false);
-  };
-
-  const handleAccessibilitySettingsChange = (settings: any) => {
-    // 접근성 설정 변경 처리
-    console.log('Accessibility settings changed:', settings);
   };
 
   // 관리자 모드 접근 (개발용 - 실제 운영시 인증 추가 필요)

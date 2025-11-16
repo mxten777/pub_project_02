@@ -146,11 +146,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
             <p className="text-senior-xl font-display font-bold text-primary-600">
               {item.price.toLocaleString()}원
             </p>
-            {item.originalPrice && item.originalPrice > item.price && (
-              <p className="text-senior-sm text-neutral-400 line-through">
-                {item.originalPrice.toLocaleString()}원
-              </p>
-            )}
+
           </div>
         </div>
 
@@ -160,14 +156,13 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
             <SeniorButton 
               variant="secondary"
               size="medium"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleDecrease();
-              }}
+              onClick={() => handleDecrease()}
               disabled={quantity === 0}
               icon={Minus}
               className="!min-w-[4.5rem] !min-h-[4.5rem] hover-scale"
-            />
+            >
+              -
+            </SeniorButton>
             
             <div className="bg-neutral-50 border-2 border-neutral-200 rounded-premium px-6 py-4 min-w-[5rem]">
               <span className="text-senior-2xl font-display font-bold text-neutral-900 block text-center">
@@ -178,14 +173,13 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
             <SeniorButton 
               variant="primary"
               size="medium"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleIncrease();
-              }}
+              onClick={() => handleIncrease()}
               icon={Plus}
-              className="!min-w-[4.5rem] !min-h-[4.5rem] hover-scale"
+              className="!min-w-[4.5rem] !min-h-[4.5rem] hover-scale glow"
               glow
-            />
+            >
+              +
+            </SeniorButton>
           </div>
         )}
 

@@ -4,14 +4,13 @@ import SeniorButton from '../components/UI/SeniorButton';
 import LanguageSelector from '../components/UI/LanguageSelector';
 import { useSpeech } from '../hooks/useSpeech';
 import { useLanguage } from '../contexts/LanguageContext';
-import { Mic, ShoppingCart, Volume2, Sparkles, Settings } from 'lucide-react';
+import { Mic, ShoppingCart, Volume2 } from 'lucide-react';
 
 interface WelcomePageProps {
   onStartOrder: () => void;
-  onOpenAccessibility?: () => void;
 }
 
-const WelcomePage: React.FC<WelcomePageProps> = ({ onStartOrder, onOpenAccessibility }) => {
+const WelcomePage: React.FC<WelcomePageProps> = ({ onStartOrder }) => {
   const { speak } = useSpeech();
   const { t } = useLanguage();
   const [clickCount, setClickCount] = useState(0);

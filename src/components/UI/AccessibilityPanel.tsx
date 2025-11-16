@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Settings, Sun, Moon, Volume2, VolumeX, Type, Eye, X, Contrast, Palette } from 'lucide-react';
+import { Settings, Moon, Volume2, Type, Eye, X } from 'lucide-react';
 import SeniorButton from './SeniorButton';
 
 interface AccessibilitySettings {
@@ -201,7 +201,7 @@ const AccessibilityPanel: React.FC<AccessibilityPanelProps> = ({
                     onChange={(e) => updateSetting('voiceSpeed', parseFloat(e.target.value))}
                     className="w-full h-2 bg-neutral-200 rounded-full appearance-none cursor-pointer slider"
                   />
-                  <style jsx>{`
+                  <style>{`
                     .slider::-webkit-slider-thumb {
                       appearance: none;
                       width: 20px;
