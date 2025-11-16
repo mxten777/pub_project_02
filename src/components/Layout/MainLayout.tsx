@@ -73,7 +73,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
             {showBackButton && (
               <button
                 onClick={onBackClick}
-                className="btn-secondary text-senior-sm sm:text-senior-base flex-shrink-0"
+                className="btn-secondary text-senior-sm sm:text-senior-base flex-shrink-0 min-h-[44px] min-w-[44px] px-3 py-2"
                 aria-label="뒤로 가기"
               >
                 <span className="sm:hidden">←</span>
@@ -94,7 +94,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
             {/* 접근성 버튼 */}
             <button
               onClick={() => setShowAccessibilityPanel(true)}
-              className="btn-secondary !min-w-[3rem] sm:!min-w-[4rem] !min-h-[3rem] sm:!min-h-[4rem] flex-shrink-0"
+              className="btn-secondary min-w-[44px] min-h-[44px] sm:min-w-[48px] sm:min-h-[48px] flex-shrink-0 flex items-center justify-center"
               title="접근성 설정"
               aria-label="접근성 설정"
             >

@@ -208,15 +208,15 @@ const VoiceOrderPage: React.FC<VoiceOrderPageProps> = ({
 
         {/* 에러 메시지 */}
         {error && (
-          <div className="card-senior bg-danger-50 border-danger-200">
-            <p className="text-senior-base text-danger-600 text-center">
+          <div className="card-senior bg-danger-50 border-danger-200 mx-4 sm:mx-0">
+            <p className="text-senior-sm sm:text-senior-base text-danger-600 text-center">
               {error}
             </p>
           </div>
         )}
 
-        {/* 컨트롤 버튼 */}
-        <div className="flex justify-center space-x-3 sm:space-x-6">
+        {/* 컴트롤 버튼 */}
+        <div className="flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-6 px-4 sm:px-0">
           {!isListening ? (
             <SeniorButton 
               variant="primary"
@@ -247,18 +247,18 @@ const VoiceOrderPage: React.FC<VoiceOrderPageProps> = ({
         {/* 메뉴 추천 시스템 */}
         {showRecommendations && currentOrder.length === 0 && (
           <div className="mb-8">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-4 px-4 sm:px-0">
               <div className="flex items-center space-x-2">
-                <Sparkles className="text-yellow-500" size={24} />
-                <h2 className="text-senior-subtitle font-bold text-gray-800">
+                <Sparkles className="text-yellow-500" size={20} />
+                <h2 className="text-senior-lg sm:text-senior-subtitle font-bold text-gray-800">
                   {t('menu.recommendation')}
                 </h2>
               </div>
               <button
                 onClick={() => setShowRecommendations(false)}
-                className="text-gray-500 hover:text-gray-700 text-senior-sm"
+                className="text-gray-500 hover:text-gray-700 text-senior-xs sm:text-senior-sm px-2 py-1 rounded hover:bg-gray-100"
               >
-                숨기기
+                숙기기
               </button>
             </div>
             
@@ -303,19 +303,23 @@ const VoiceOrderPage: React.FC<VoiceOrderPageProps> = ({
               </div>
             </div>
             
-            <div className="flex justify-center space-x-4">
+            <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4 px-4 sm:px-0">
               <SeniorButton 
                 variant="secondary"
+                size="medium"
                 onClick={handleRetry}
                 icon={RefreshCw}
+                className="w-full sm:w-auto"
               >
                 다시 말하기
               </SeniorButton>
               
               <SeniorButton 
                 variant="success"
+                size="medium"
                 onClick={handleConfirmOrder}
                 icon={ArrowRight}
+                className="w-full sm:w-auto"
               >
                 {t('order.confirm')}
               </SeniorButton>

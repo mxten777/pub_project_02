@@ -64,45 +64,46 @@ const WelcomePage: React.FC<WelcomePageProps> = ({ onStartOrder }) => {
         <LanguageSelector />
       </div>
       
-      <div className="text-center space-y-12">
+      <div className="text-center space-y-8 sm:space-y-12">
         {/* 메인 로고/아이콘 */}
-        <div className="mb-12 fade-in">
-          <div className="w-36 h-36 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full mx-auto mb-8 flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 voice-wave">
-            <ShoppingCart size={72} className="text-white" />
+        <div className="mb-8 sm:mb-12 fade-in">
+          <div className="w-28 h-28 sm:w-36 sm:h-36 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full mx-auto mb-6 sm:mb-8 flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 voice-wave">
+            <ShoppingCart size={56} className="text-white sm:hidden" />
+            <ShoppingCart size={72} className="text-white hidden sm:block" />
           </div>
           <h1 
-            className="text-senior-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6 cursor-pointer hover:scale-105 transition-transform"
+            className="text-senior-2xl sm:text-senior-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4 sm:mb-6 cursor-pointer hover:scale-105 transition-transform px-4"
             onClick={handleTitleClick}
             title="관리자 접근: 5번 클릭"
           >
             {t('app.title')}
           </h1>
-          <p className="text-senior-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-senior-lg sm:text-senior-xl text-gray-600 max-w-2xl mx-auto leading-relaxed px-4">
             {t('app.description')}<br/>
-            <span className="text-senior-base text-blue-600 font-semibold">{t('app.subtitle')}</span>
+            <span className="text-senior-sm sm:text-senior-base text-blue-600 font-semibold">{t('app.subtitle')}</span>
           </p>
         </div>
 
         {/* 버튼 그룹 */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-4">
           {/* 음성 안내 버튼 */}
           <SeniorButton 
             variant="secondary"
-            size="large"
+            size="medium"
             onClick={handleVoiceGuide}
-            className="shadow-senior-lg hover:scale-105 transform transition-all duration-300"
+            className="shadow-senior-lg hover:scale-105 transform transition-all duration-300 w-full sm:w-auto"
           >
-            <Volume2 size={28} className="mr-3" />
+            <Volume2 size={24} className="mr-2 sm:mr-3" />
             {t('accessibility.voice')}
           </SeniorButton>
           
           {/* 주문 시작 버튼 */}
           <SeniorButton 
             variant="primary"
-            size="extra-large"
+            size="large"
             onClick={handleStartClick}
             icon={Mic}
-            className="shadow-senior-lg hover:scale-105 transform transition-all duration-300 pulse-ring"
+            className="shadow-senior-lg hover:scale-105 transform transition-all duration-300 pulse-ring w-full sm:w-auto"
           >
             {t('order.start')}
           </SeniorButton>

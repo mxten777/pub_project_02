@@ -81,12 +81,14 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
     <MainLayout title="관리자 페이지" showBackButton onBackClick={onBack}>
       <div className="space-y-8">
         {/* 헤더 액션 */}
-        <div className="flex justify-between items-center">
-          <h2 className="text-senior-subtitle">메뉴 관리</h2>
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4 sm:space-y-0">
+          <h2 className="text-senior-lg sm:text-senior-subtitle font-semibold">메뉴 관리</h2>
           <SeniorButton 
             variant="primary"
+            size="medium"
             onClick={() => setShowAddForm(!showAddForm)}
             icon={Plus}
+            className="w-full sm:w-auto"
           >
             메뉴 추가
           </SeniorButton>
@@ -97,72 +99,76 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
           <div className="card-senior">
             <h3 className="text-senior-lg font-semibold mb-6">새 메뉴 추가</h3>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
               <div>
-                <label className="block text-senior-base font-semibold mb-2">
+                <label className="block text-senior-sm sm:text-senior-base font-semibold mb-2">
                   메뉴명
                 </label>
                 <input
                   type="text"
                   value={newItem.name}
                   onChange={(e) => setNewItem({...newItem, name: e.target.value})}
-                  className="w-full p-4 text-senior-base border-2 border-gray-300 rounded-senior focus:border-primary-500"
+                  className="w-full p-3 sm:p-4 text-senior-sm sm:text-senior-base border-2 border-gray-300 rounded-senior focus:border-primary-500"
                   placeholder="메뉴명 입력"
                 />
               </div>
               
               <div>
-                <label className="block text-senior-base font-semibold mb-2">
+                <label className="block text-senior-sm sm:text-senior-base font-semibold mb-2">
                   가격 (원)
                 </label>
                 <input
                   type="number"
                   value={newItem.price || ''}
                   onChange={(e) => setNewItem({...newItem, price: parseInt(e.target.value) || 0})}
-                  className="w-full p-4 text-senior-base border-2 border-gray-300 rounded-senior focus:border-primary-500"
+                  className="w-full p-3 sm:p-4 text-senior-sm sm:text-senior-base border-2 border-gray-300 rounded-senior focus:border-primary-500"
                   placeholder="0"
                 />
               </div>
               
               <div>
-                <label className="block text-senior-base font-semibold mb-2">
+                <label className="block text-senior-sm sm:text-senior-base font-semibold mb-2">
                   카테고리
                 </label>
                 <input
                   type="text"
                   value={newItem.category}
                   onChange={(e) => setNewItem({...newItem, category: e.target.value})}
-                  className="w-full p-4 text-senior-base border-2 border-gray-300 rounded-senior focus:border-primary-500"
+                  className="w-full p-3 sm:p-4 text-senior-sm sm:text-senior-base border-2 border-gray-300 rounded-senior focus:border-primary-500"
                   placeholder="예: 찌개, 밥, 고기"
                 />
               </div>
               
               <div>
-                <label className="block text-senior-base font-semibold mb-2">
+                <label className="block text-senior-sm sm:text-senior-base font-semibold mb-2">
                   설명
                 </label>
                 <input
                   type="text"
                   value={newItem.description}
                   onChange={(e) => setNewItem({...newItem, description: e.target.value})}
-                  className="w-full p-4 text-senior-base border-2 border-gray-300 rounded-senior focus:border-primary-500"
+                  className="w-full p-3 sm:p-4 text-senior-sm sm:text-senior-base border-2 border-gray-300 rounded-senior focus:border-primary-500"
                   placeholder="메뉴 설명"
                 />
               </div>
             </div>
             
-            <div className="flex justify-end space-x-4 mt-6">
+            <div className="flex flex-col sm:flex-row sm:justify-end space-y-3 sm:space-y-0 sm:space-x-4 mt-6">
               <SeniorButton 
                 variant="secondary"
+                size="medium"
                 onClick={() => setShowAddForm(false)}
+                className="w-full sm:w-auto order-2 sm:order-1"
               >
                 취소
               </SeniorButton>
               
               <SeniorButton 
                 variant="success"
+                size="medium"
                 onClick={handleAddItem}
                 icon={Save}
+                className="w-full sm:w-auto order-1 sm:order-2"
               >
                 추가
               </SeniorButton>
@@ -171,16 +177,17 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
         )}
 
         {/* 메뉴 목록 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {menuItems.map(item => (
             <div key={item.id} className="relative">
               <MenuItemCard item={item} />
               
-              <div className="mt-4 flex justify-center">
+              <div className="mt-3 sm:mt-4 flex justify-center">
                 <SeniorButton
                   variant={item.available ? 'danger' : 'success'}
+                  size="medium"
                   onClick={() => handleToggleAvailable(item.id)}
-                  className="!min-h-[3rem]"
+                  className="w-full sm:w-auto"
                 >
                   {item.available ? '품절 처리' : '판매 재개'}
                 </SeniorButton>
