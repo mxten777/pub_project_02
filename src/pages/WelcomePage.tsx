@@ -7,9 +7,10 @@ import { Mic, ShoppingCart, Volume2 } from 'lucide-react';
 
 interface WelcomePageProps {
   onStartOrder: () => void;
+  onMenuOpen: () => void;
 }
 
-const WelcomePage: React.FC<WelcomePageProps> = ({ onStartOrder }) => {
+const WelcomePage: React.FC<WelcomePageProps> = ({ onStartOrder, onMenuOpen }) => {
   const { speak } = useSpeech();
   const { t } = useLanguage();
   const [clickCount, setClickCount] = useState(0);
@@ -29,6 +30,11 @@ const WelcomePage: React.FC<WelcomePageProps> = ({ onStartOrder }) => {
   const handleStartClick = async () => {
     await speak(t('order.processing'));
     onStartOrder();
+  };
+
+  const handleMenuClick = async () => {
+    await speak('메뉴를 확인하시겠습니다.');
+    onMenuOpen();
   };
 
   const handleVoiceGuide = async () => {
@@ -102,6 +108,17 @@ const WelcomePage: React.FC<WelcomePageProps> = ({ onStartOrder }) => {
             {t('accessibility.voice')}
           </SeniorButton>
           
+          {/* 메뉴 보기 버튼 */}
+          <SeniorButton 
+            variant="secondary"
+            size="large"
+            onClick={handleMenuClick}
+            icon={ShoppingCart}
+            className="w-full shadow-premium-lg hover:scale-105 transform transition-all duration-300"
+          >
+            {t('menu.title')}
+          </SeniorButton>
+
           {/* 주문 시작 버튼 - 메인 액션 */}
           <SeniorButton 
             variant="primary"

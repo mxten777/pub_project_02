@@ -27,27 +27,22 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   const [language, setLanguageState] = useState<Language>('ko');
 
   useEffect(() => {
-    // 로컬 저장소에서 언어 설정 불러오기
-    const savedLanguage = localStorage.getItem('app-language') as Language;
-    if (savedLanguage && ['ko', 'en', 'zh', 'ja'].includes(savedLanguage)) {
-      setLanguageState(savedLanguage);
+    const savedLang = localStorage.getItem('app-language') as Language;
+    if (savedLang && ['ko', 'en', 'zh', 'ja'].includes(savedLang)) {
+      setLanguageState(savedLang);
     } else {
-      // 브라우저 언어 감지
-      const browserLang = navigator.language.toLowerCase();
-      if (browserLang.includes('en')) setLanguageState('en');
-      else if (browserLang.includes('zh')) setLanguageState('zh');
-      else if (browserLang.includes('ja')) setLanguageState('ja');
-      else setLanguageState('ko');
+      // 기본값 한국어 설정
+      localStorage.setItem('app-language', 'ko');
+      setLanguageState('ko');
     }
   }, []);
 
   const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
     localStorage.setItem('app-language', lang);
+    setLanguageState(lang);
   };
 
   const t = (key: string, params?: Record<string, string | number>) => {
-    // 번역 함수 - 실제 번역 데이터에서 값을 가져옴
     const translations = getTranslations(language);
     let translation = getNestedValue(translations, key) || key;
     
@@ -86,7 +81,8 @@ function getTranslations(lang: Language) {
         close: '닫기',
         loading: '로딩 중...',
         error: '오류가 발생했습니다',
-        success: '성공적으로 완료되었습니다'
+        success: '성공적으로 완료되었습니다',
+        languageSelect: '언어 선택'
       },
       app: {
         title: '바이브 오더',
@@ -109,12 +105,16 @@ function getTranslations(lang: Language) {
         }
       },
       menu: {
+        title: '메뉴',
+        subtitle: '맛있는 음식을 골라보세요',
         category: '카테고리',
         price: '가격',
         soldOut: '품절',
         available: '판매중',
         quantity: '수량',
-        recommendation: '추천 메뉴'
+        recommendation: '추천 메뉴',
+        popular: '인기',
+        addToCart: '담기'
       },
       accessibility: {
         title: '접근성 설정',
@@ -142,7 +142,8 @@ function getTranslations(lang: Language) {
         close: 'Close',
         loading: 'Loading...',
         error: 'An error occurred',
-        success: 'Successfully completed'
+        success: 'Successfully completed',
+        languageSelect: 'Language Selection'
       },
       app: {
         title: 'Vibe Order',
@@ -165,12 +166,16 @@ function getTranslations(lang: Language) {
         }
       },
       menu: {
+        title: 'Menu',
+        subtitle: 'Choose delicious food',
         category: 'Category',
         price: 'Price',
         soldOut: 'Sold Out',
         available: 'Available',
         quantity: 'Quantity',
-        recommendation: 'Recommended Menu'
+        recommendation: 'Recommended Menu',
+        popular: 'Popular',
+        addToCart: 'Add to Cart'
       },
       accessibility: {
         title: 'Accessibility Settings',
@@ -198,7 +203,8 @@ function getTranslations(lang: Language) {
         close: '关闭',
         loading: '加载中...',
         error: '发生错误',
-        success: '成功完成'
+        success: '成功完成',
+        languageSelect: '语言选择'
       },
       app: {
         title: 'Vibe Order',
@@ -221,12 +227,16 @@ function getTranslations(lang: Language) {
         }
       },
       menu: {
+        title: '菜单',
+        subtitle: '选择美味食物',
         category: '分类',
         price: '价格',
         soldOut: '售完',
         available: '有货',
         quantity: '数量',
-        recommendation: '推荐菜单'
+        recommendation: '推荐菜单',
+        popular: '热门',
+        addToCart: '添加到购物车'
       },
       accessibility: {
         title: '辅助功能设置',
@@ -254,7 +264,8 @@ function getTranslations(lang: Language) {
         close: '閉じる',
         loading: '読み込み中...',
         error: 'エラーが発生しました',
-        success: '正常に完了しました'
+        success: '正常に完了しました',
+        languageSelect: '言語選択'
       },
       app: {
         title: 'Vibe Order',
@@ -277,12 +288,16 @@ function getTranslations(lang: Language) {
         }
       },
       menu: {
+        title: 'メニュー',
+        subtitle: '美味しい料理を選んでください',
         category: 'カテゴリ',
         price: '価格',
         soldOut: '売り切れ',
         available: '販売中',
         quantity: '数量',
-        recommendation: 'おすすめメニュー'
+        recommendation: 'おすすめメニュー',
+        popular: '人気',
+        addToCart: 'カートに追加'
       },
       accessibility: {
         title: 'アクセシビリティ設定',

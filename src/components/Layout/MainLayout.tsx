@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AccessibilityPanel from '../UI/AccessibilityPanel';
 import LanguageSelector from '../UI/LanguageSelector';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 interface AccessibilitySettings {
   highContrast: boolean;
@@ -22,6 +23,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
   showBackButton = false, 
   onBackClick 
 }) => {
+  const { language, t } = useLanguage();
   const [showAccessibilityPanel, setShowAccessibilityPanel] = useState(false);
   const [settings, setSettings] = useState<AccessibilitySettings>({
     highContrast: false,
@@ -30,6 +32,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({
     voiceSpeed: 0.8
   });
   const [isKeyboardUser, setIsKeyboardUser] = useState(false);
+
+  // 언어 변경 감지 디버깅
+  useEffect(() => {
+    console.log('🏠 MainLayout - 언어 변경 감지됨:', language);
+  }, [language]);
 
   useEffect(() => {
     // 키보드 사용자 감지
@@ -84,11 +91,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({
             
             {title ? (
               <h1 className="text-senior-xl sm:text-senior-3xl lg:text-display-sm font-black text-center flex-1 fade-in truncate bg-gradient-to-r from-lime-600 via-lime-500 to-grape-600 bg-clip-text text-transparent drop-shadow-lg">
-                {title}
+                {title} ({language})
               </h1>
             ) : (
               <h1 className="text-senior-xl sm:text-senior-3xl lg:text-display-sm font-black text-center flex-1 fade-in bg-gradient-to-r from-lime-600 via-lime-500 to-grape-600 bg-clip-text text-transparent drop-shadow-lg">
-                바이브 오더
+                {t('app.title')} ({language})
               </h1>
             )}
             
@@ -126,10 +133,10 @@ const MainLayout: React.FC<MainLayoutProps> = ({
       } text-white`}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-senior-sm sm:text-senior-base">
-            음성 주문 키오스크 - 시니어 친화형
+            {t('app.title')} - {t('app.subtitle')}
           </p>
           <p className="text-senior-xs sm:text-senior-sm mt-2 text-gray-400">
-            접근성 버튼으로 화면을 더 편리하게 사용하세요
+            {t('accessibility.title')}
           </p>
         </div>
       </footer>

@@ -83,22 +83,22 @@ const SeniorButton: React.FC<SeniorButtonProps> = ({
       <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       
       {/* 버튼 컴텐츠 */}
-      <div className="relative flex items-center justify-center font-semibold">
+      <div className="relative flex items-center justify-center font-semibold h-full w-full">
         {loading ? (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center gap-2 h-full">
             <div className="loading-spinner" />
-            <span>{children}</span>
+            <span className="flex items-center">{children}</span>
             <span className="sr-only">로딩 중</span>
           </div>
         ) : (
-          <div className="flex items-center gap-3 w-full justify-center">
+          <div className="flex items-center justify-center gap-3 w-full h-full">
             {Icon && (
               <Icon 
                 size={getIconSize()} 
                 className="transition-transform duration-200 group-hover:scale-110 flex-shrink-0" 
               />
             )}
-            <span className="transition-all duration-200 whitespace-nowrap">{children}</span>
+            <span className="transition-all duration-200 whitespace-nowrap flex items-center">{children}</span>
           </div>
         )}
       </div>

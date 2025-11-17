@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import WelcomePage from './pages/WelcomePage';
 import VoiceOrderPage from './pages/VoiceOrderPage';
+import MenuPage from './pages/MenuPage';
 import OrderConfirmPage from './pages/OrderConfirmPage';
 import OrderCompletePage from './pages/OrderCompletePage';
 import AdminPage from './pages/AdminPage';
@@ -9,7 +10,7 @@ import { LanguageProvider } from './contexts/LanguageContext';
 import LoadingSpinner from './components/UI/LoadingSpinner';
 import type { OrderItem } from './types';
 
-type AppStep = 'welcome' | 'voice-order' | 'confirm' | 'complete' | 'admin';
+type AppStep = 'welcome' | 'voice-order' | 'menu' | 'confirm' | 'complete' | 'admin';
 
 function App() {
   const [currentStep, setCurrentStep] = useState<AppStep>('welcome');
@@ -53,6 +54,14 @@ function App() {
 
   const handleStartOrder = () => {
     transitionToStep('voice-order');
+  };
+
+  const handleMenuOpen = () => {
+    transitionToStep('menu');
+  };
+
+  const handleBackFromMenu = () => {
+    transitionToStep('welcome');
   };
 
   const handleOrderComplete = (items: OrderItem[]) => {
@@ -142,7 +151,7 @@ function App() {
   const renderCurrentPage = () => {
     switch (currentStep) {
       case 'welcome':
-        return <WelcomePage onStartOrder={handleStartOrder} />;
+        return <WelcomePage onStartOrder={handleStartOrder} onMenuOpen={handleMenuOpen} />;
       
       case 'voice-order':
         return (
@@ -151,6 +160,9 @@ function App() {
             onBack={handleBackToWelcome}
           />
         );
+
+      case 'menu':
+        return <MenuPage onBack={handleBackFromMenu} />;
       
       case 'confirm':
         return (
