@@ -1,7 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useMenu } from '../../contexts/MenuContext';
-import type { MenuCategory } from '../../types/menu';
 
 interface MenuCategoriesProps {
   className?: string;

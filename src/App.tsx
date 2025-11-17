@@ -180,7 +180,7 @@ function App() {
         return <AdminPage onBack={handleBackToWelcome} />;
       
       default:
-        return <WelcomePage onStartOrder={handleStartOrder} />;
+        return <WelcomePage onStartOrder={handleStartOrder} onMenuOpen={handleMenuOpen} />;
     }
   };
 

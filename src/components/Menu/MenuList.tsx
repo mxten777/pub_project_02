@@ -15,7 +15,7 @@ const MenuList: React.FC<MenuListProps> = ({ className = '' }) => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center py-12">
-        <LoadingSpinner size="lg" />
+        <LoadingSpinner size="large" />
       </div>
     );
   }
