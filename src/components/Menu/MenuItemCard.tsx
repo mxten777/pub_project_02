@@ -100,7 +100,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
             <>
               <img 
                 src={item.imageUrl} 
-                alt={item.name}
+                alt={typeof item.name === 'string' ? item.name : item.name.ko}
                 className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-110 ${
                   imageLoaded ? 'opacity-100' : 'opacity-0'
                 }`}
@@ -121,7 +121,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
                 <div className="w-16 h-16 bg-neutral-400 rounded-full mx-auto mb-3 flex items-center justify-center">
                   <span className="text-2xl">🍴</span>
                 </div>
-                <span className="text-sm font-medium">{item.name}</span>
+                <span className="text-sm font-medium">{typeof item.name === 'string' ? item.name : item.name.ko}</span>
               </div>
             </div>
           )}
@@ -133,7 +133,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
         {/* 프리미엄 메뉴 정보 */}
         <div className="text-center mb-6">
           <h3 className="text-senior-xl font-display font-bold text-neutral-900 mb-3 group-hover:text-primary-700 transition-colors duration-300">
-            {item.name}
+            {typeof item.name === 'string' ? item.name : item.name.ko}
           </h3>
           
           {item.description && (

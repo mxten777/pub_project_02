@@ -37,7 +37,7 @@ const VoiceOrderPage: React.FC<VoiceOrderPageProps> = ({
   } = useVoiceRecognition();
   
   const { speak, isSpeaking } = useSpeech();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     loadMenuItems();
@@ -80,15 +80,16 @@ const VoiceOrderPage: React.FC<VoiceOrderPageProps> = ({
       const orderItems: OrderItem[] = [];
       
       parsedOrder.items.forEach(parsedItem => {
-        const menuItem = menuItems.find(item => 
-          item.name.includes(parsedItem.name) || 
-          parsedItem.name.includes(item.name)
-        );
+        const menuItem = menuItems.find(item => {
+          const itemName = typeof item.name === 'string' ? item.name : item.name[language] || item.name.ko;
+          return itemName.includes(parsedItem.name) || parsedItem.name.includes(itemName);
+        });
         
         if (menuItem && menuItem.available) {
+          const itemName = typeof menuItem.name === 'string' ? menuItem.name : menuItem.name[language] || menuItem.name.ko;
           orderItems.push({
             id: menuItem.id,
-            name: menuItem.name,
+            name: itemName,
             price: menuItem.price,
             quantity: parsedItem.quantity,
             category: menuItem.category
@@ -153,13 +154,16 @@ const VoiceOrderPage: React.FC<VoiceOrderPageProps> = ({
       recommendationService.updateRecommendationStats(recommendation.id, 'order');
       
       // 추천된 메뉴를 주문 목록에 추가
-      const orderItems: OrderItem[] = recommendation.items.map(item => ({
-        id: item.id,
-        name: item.name,
-        price: item.price,
-        quantity: 1,
-        category: item.category
-      }));
+      const orderItems: OrderItem[] = recommendation.items.map(item => {
+        const itemName = typeof item.name === 'string' ? item.name : item.name[language] || item.name.ko;
+        return {
+          id: item.id,
+          name: itemName,
+          price: item.price,
+          quantity: 1,
+          category: item.category
+        };
+      });
       
       setCurrentOrder(orderItems);
       setShowRecommendations(false);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mic, MicOff, Volume2, Wifi, ShoppingCart } from 'lucide-react';
+import { Mic, MicOff, Wifi, ShoppingCart } from 'lucide-react';
 import { useVoiceRecognition } from '../../hooks/useVoiceRecognition';
 import { useVoiceOrder } from '../../hooks/useVoiceOrder';
 import { useLanguage } from '../../contexts/LanguageContext';

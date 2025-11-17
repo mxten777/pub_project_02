@@ -107,23 +107,29 @@ class RecommendationService {
       
       // 인기도 순으로 정렬
       const popularMenus = allMenus
-        .map((menu: MenuItem) => ({
-          ...menu,
-          popularity: this.popularityData.get(menu.name) || 50
-        }))
+        .map((menu: MenuItem) => {
+          const menuName = typeof menu.name === 'string' ? menu.name : menu.name.ko;
+          return {
+            ...menu,
+            popularity: this.popularityData.get(menuName) || 50
+          };
+        })
         .sort((a: any, b: any) => b.popularity - a.popularity)
         .slice(0, limit);
 
-      return popularMenus.map((menu: any) => ({
-        id: `popular-${menu.id}`,
-        type: 'popular' as const,
-        title: `인기 메뉴: ${menu.name}`,
-        description: `${menu.popularity}% 고객 만족도`,
-        items: [menu],
-        totalPrice: menu.price,
-        popularity: menu.popularity,
-        category: menu.category
-      }));
+      return popularMenus.map((menu: any) => {
+        const menuName = typeof menu.name === 'string' ? menu.name : menu.name.ko;
+        return {
+          id: `popular-${menu.id}`,
+          type: 'popular' as const,
+          title: `인기 메뉴: ${menuName}`,
+          description: `${menu.popularity}% 고객 만족도`,
+          items: [menu],
+          totalPrice: menu.price,
+          popularity: menu.popularity,
+          category: menu.category
+        };
+      });
     } catch (error) {
       console.error('인기 메뉴 조회 실패:', error);
       return [];
@@ -160,18 +166,23 @@ class RecommendationService {
         const categoryMenus = allMenus
           .filter((menu: MenuItem) => menu.category === category)
           .filter((menu: MenuItem) => !preferences.frequentItems.includes(menu.id))
-          .sort((a: MenuItem, b: MenuItem) => (this.popularityData.get(b.name) || 50) - (this.popularityData.get(a.name) || 50))
+          .sort((a: MenuItem, b: MenuItem) => {
+            const aName = typeof a.name === 'string' ? a.name : a.name.ko;
+            const bName = typeof b.name === 'string' ? b.name : b.name.ko;
+            return (this.popularityData.get(bName) || 50) - (this.popularityData.get(aName) || 50);
+          })
           .slice(0, 2);
           
         categoryMenus.forEach((menu: MenuItem) => {
+          const menuName = typeof menu.name === 'string' ? menu.name : menu.name.ko;
           recommendations.push({
             id: `personalized-${menu.id}`,
             type: 'personalized',
-            title: `${category} 추천: ${menu.name}`,
+            title: `${category} 추천: ${menuName}`,
             description: '자주 주문하시는 카테고리입니다',
             items: [menu],
             totalPrice: menu.price,
-            popularity: this.popularityData.get(menu.name) || 50,
+            popularity: this.popularityData.get(menuName) || 50,
             category: menu.category
           });
         });
@@ -184,18 +195,23 @@ class RecommendationService {
           const avgPrice = preferences.averageOrderValue;
           return price >= avgPrice * 0.8 && price <= avgPrice * 1.2;
         })
-        .sort((a: MenuItem, b: MenuItem) => (this.popularityData.get(b.name) || 50) - (this.popularityData.get(a.name) || 50))
+        .sort((a: MenuItem, b: MenuItem) => {
+          const aName = typeof a.name === 'string' ? a.name : a.name.ko;
+          const bName = typeof b.name === 'string' ? b.name : b.name.ko;
+          return (this.popularityData.get(bName) || 50) - (this.popularityData.get(aName) || 50);
+        })
         .slice(0, 1);
         
       priceRangeMenus.forEach((menu: MenuItem) => {
+        const menuName = typeof menu.name === 'string' ? menu.name : menu.name.ko;
         recommendations.push({
           id: `price-match-${menu.id}`,
           type: 'personalized',
-          title: `가격대 추천: ${menu.name}`,
+          title: `가격대 추천: ${menuName}`,
           description: '평소 주문 가격대와 비슷합니다',
           items: [menu],
           totalPrice: menu.price,
-          popularity: this.popularityData.get(menu.name) || 50,
+          popularity: this.popularityData.get(menuName) || 50,
           category: menu.category
         });
       });
