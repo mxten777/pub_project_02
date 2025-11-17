@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AccessibilityPanel from '../UI/AccessibilityPanel';
+import LanguageSelector from '../UI/LanguageSelector';
 
 interface AccessibilitySettings {
   highContrast: boolean;
@@ -92,16 +93,18 @@ const MainLayout: React.FC<MainLayoutProps> = ({
             )}
             
             {/* 우측 버튼 그룹 */}
-            <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-              {/* 언어 선택기 공간 */}
-              <div id="language-selector-slot" className="flex items-center">
-                {/* 언어 선택기가 여기에 포털로 렌더링됨 */}
-              </div>
+            <div className="flex items-center gap-3 flex-shrink-0">
+              {/* 언어 선택기 */}
+              <LanguageSelector className="flex-shrink-0" />
               
               {/* 접근성 버튼 */}
               <button
                 onClick={() => setShowAccessibilityPanel(true)}
-                className="btn-secondary min-w-[44px] min-h-[44px] sm:min-w-[48px] sm:min-h-[48px] flex-shrink-0 flex items-center justify-center"
+                className="w-[4rem] h-[4rem] rounded-2xl flex items-center justify-center text-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-white/30"
+                style={{
+                  background: 'linear-gradient(145deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85))',
+                  backdropFilter: 'blur(12px)'
+                }}
                 title="접근성 설정"
                 aria-label="접근성 설정"
               >
@@ -113,7 +116,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
       </header>
 
       {/* 메인 콘텐츠 */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-8 min-h-[calc(100vh-200px)]">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12 min-h-[calc(100vh-200px)]">
         {children}
       </main>
 

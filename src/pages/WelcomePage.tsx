@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import MainLayout from '../components/Layout/MainLayout';
 import SeniorButton from '../components/UI/SeniorButton';
-import LanguageSelector from '../components/UI/LanguageSelector';
 import { useSpeech } from '../hooks/useSpeech';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Mic, ShoppingCart, Volume2 } from 'lucide-react';
@@ -59,9 +58,6 @@ const WelcomePage: React.FC<WelcomePageProps> = ({ onStartOrder }) => {
 
   return (
     <MainLayout title={t('app.title')}>
-      {/* 언어 선택기를 헤더에 Portal로 렌더링 */}
-      <LanguageSelector usePortal={true} />
-      
       <div className="text-center space-y-8 sm:space-y-12">
         {/* 메인 로고/아이콘 */}
         <div className="mb-8 sm:mb-12 fade-in">
@@ -71,50 +67,70 @@ const WelcomePage: React.FC<WelcomePageProps> = ({ onStartOrder }) => {
             <ShoppingCart size={72} className="text-white hidden sm:block relative z-10" />
           </div>
           <h1 
-            className="text-senior-2xl sm:text-senior-3xl font-bold bg-gradient-to-r from-lime-600 via-lime-500 to-grape-600 bg-clip-text text-transparent mb-4 sm:mb-6 cursor-pointer hover:scale-105 transition-all duration-500 px-4 drop-shadow-lg"
+            className="text-4xl sm:text-5xl lg:text-6xl font-black mb-4 sm:mb-6 cursor-pointer hover:scale-105 transition-all duration-500 px-4"
             onClick={handleTitleClick}
             title="관리자 접근: 5번 클릭"
+            style={{
+              background: 'linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 30%, #ECFDF5 70%, #FFFFFF 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              textShadow: '0 4px 20px rgba(0,0,0,0.3), 0 2px 8px rgba(0,0,0,0.2)',
+              filter: 'contrast(1.2) brightness(1.1)'
+            }}
           >
             {t('app.title')}
           </h1>
-          <p className="text-senior-lg sm:text-senior-xl text-gray-600 max-w-2xl mx-auto leading-relaxed px-4">
+          <p className="text-xl sm:text-2xl text-white max-w-2xl mx-auto leading-relaxed px-4 font-semibold" style={{
+            textShadow: '0 3px 15px rgba(0,0,0,0.4), 0 1px 5px rgba(0,0,0,0.2)'
+          }}>
             {t('app.description')}<br/>
-            <span className="text-senior-sm sm:text-senior-base text-blue-600 font-semibold">{t('app.subtitle')}</span>
+            <span className="text-lg sm:text-xl text-lime-100 font-bold">{t('app.subtitle')}</span>
           </p>
         </div>
 
-        {/* 버튼 그룹 */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-4">
+        {/* 버튼 그룹 - 완전 통일된 디자인 */}
+        <div className="flex flex-col items-center justify-center gap-4 px-4 max-w-md mx-auto">
           {/* 음성 안내 버튼 */}
           <SeniorButton 
             variant="secondary"
-            size="medium"
+            size="large"
             onClick={handleVoiceGuide}
-            className="shadow-senior-lg hover:scale-105 transform transition-all duration-300 w-full sm:w-auto"
+            icon={Volume2}
+            className="w-full shadow-premium-lg hover:scale-105 transform transition-all duration-300"
           >
-            <Volume2 size={24} className="mr-2 sm:mr-3" />
             {t('accessibility.voice')}
           </SeniorButton>
           
-          {/* 주문 시작 버튼 */}
+          {/* 주문 시작 버튼 - 메인 액션 */}
           <SeniorButton 
             variant="primary"
             size="large"
             onClick={handleStartClick}
             icon={Mic}
-            className="shadow-senior-lg hover:scale-105 transform transition-all duration-300 pulse-ring w-full sm:w-auto"
+            className="w-full shadow-premium-xl hover:scale-105 transform transition-all duration-300"
           >
             {t('order.start')}
           </SeniorButton>
         </div>
         
-        <div className="text-center">
-          <p className="text-senior-base text-gray-500 mb-2">
-            {t('voice.speakClearly')}
-          </p>
-          <p className="text-senior-sm text-blue-600">
-            {t('voice.examples')}
-          </p>
+        {/* 음성 안내 섹션 */}
+        <div className="px-4 max-w-lg mx-auto">
+          <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-white/50">
+            <div className="text-center space-y-4">
+              <div className="w-14 h-14 bg-gradient-to-br from-lime-400 to-lime-500 rounded-2xl mx-auto flex items-center justify-center">
+                <Volume2 size={24} className="text-white" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-gray-800 mb-2">
+                  {t('voice.speakClearly')}
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  {t('voice.examples')}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* 안내 메시지 */}

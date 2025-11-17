@@ -149,11 +149,17 @@ export default {
         'premium': '0 4px 12px -2px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.03)',
         'premium-lg': '0 8px 24px -4px rgba(0, 0, 0, 0.08), 0 4px 8px -4px rgba(0, 0, 0, 0.03)',
         'premium-xl': '0 20px 40px -8px rgba(0, 0, 0, 0.12), 0 8px 16px -8px rgba(0, 0, 0, 0.04)',
+        'premium-2xl': '0 32px 64px -12px rgba(0, 0, 0, 0.18), 0 12px 24px -12px rgba(0, 0, 0, 0.06)',
+        'premium-3xl': '0 48px 96px -16px rgba(0, 0, 0, 0.24), 0 16px 32px -16px rgba(0, 0, 0, 0.08)',
         'senior': '0 8px 32px -4px rgba(0, 0, 0, 0.12)',
         'senior-lg': '0 16px 48px -8px rgba(0, 0, 0, 0.15)',
         'senior-xl': '0 24px 64px -12px rgba(0, 0, 0, 0.18)',
         'glow': '0 0 20px rgba(59, 130, 246, 0.15)',
-        'glow-lg': '0 0 32px rgba(59, 130, 246, 0.2)'
+        'glow-lg': '0 0 32px rgba(59, 130, 246, 0.2)',
+        'lime-glow': '0 0 20px rgba(163, 230, 53, 0.3)',
+        'lime-glow-lg': '0 0 32px rgba(163, 230, 53, 0.4)',
+        'glass-premium': '0 8px 32px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+        'glass-premium-lg': '0 16px 48px rgba(255, 255, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.25)'
       },
       animation: {
         'fade-in': 'fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -165,6 +171,8 @@ export default {
       },
       backgroundImage: {
         'premium-gradient': 'linear-gradient(135deg, #A3E635 0%, #84CC16 25%, #A855F7 75%, #9333EA 100%)',
+        'lime-gradient': 'linear-gradient(135deg, #BEF264 0%, #A3E635 50%, #84CC16 100%)',
+        'lime-gradient-hover': 'linear-gradient(135deg, #D9F99D 0%, #BEF264 50%, #A3E635 100%)',
         'lime-purple-radial': 'radial-gradient(ellipse at top left, #A3E635, #84CC16, #A855F7, #9333EA)',
         'premium-mesh': `
           radial-gradient(at 40% 20%, #A3E635 0px, transparent 50%),

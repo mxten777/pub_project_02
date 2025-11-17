@@ -200,11 +200,7 @@ const VoiceOrderPage: React.FC<VoiceOrderPageProps> = ({
     <MainLayout title="음성 주문" showBackButton onBackClick={onBack}>
       <div className="space-y-4 sm:space-y-6 lg:space-y-8">
         {/* 음성 상태 */}
-        <VoiceStatus 
-          isListening={isListening}
-          isSpeaking={isSpeaking}
-          transcript={result?.transcript}
-        />
+        <VoiceStatus />
 
         {/* 에러 메시지 */}
         {error && (
@@ -220,12 +216,12 @@ const VoiceOrderPage: React.FC<VoiceOrderPageProps> = ({
           {!isListening ? (
             <SeniorButton 
               variant="primary"
-              size="normal"
+              size="large"
               onClick={handleStartListening}
               icon={Mic}
               disabled={isProcessing || isSpeaking}
               loading={isProcessing}
-              className="flex-1 sm:flex-initial max-w-xs"
+              className="flex-1 sm:flex-initial max-w-xs shadow-premium-lg hover:shadow-premium-xl font-bold"
             >
               <span className="hidden sm:inline">주문 말하기</span>
               <span className="sm:hidden">주문</span>
@@ -233,10 +229,10 @@ const VoiceOrderPage: React.FC<VoiceOrderPageProps> = ({
           ) : (
             <SeniorButton 
               variant="danger"
-              size="normal"
+              size="large"
               onClick={handleStopListening}
               icon={MicOff}
-              className="flex-1 sm:flex-initial max-w-xs"
+              className="flex-1 sm:flex-initial max-w-xs shadow-premium-lg hover:shadow-premium-xl font-bold"
             >
               <span className="hidden sm:inline">음성 중지</span>
               <span className="sm:hidden">중지</span>
@@ -306,20 +302,20 @@ const VoiceOrderPage: React.FC<VoiceOrderPageProps> = ({
             <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4 px-4 sm:px-0">
               <SeniorButton 
                 variant="secondary"
-                size="medium"
+                size="large"
                 onClick={handleRetry}
                 icon={RefreshCw}
-                className="w-full sm:w-auto"
+                className="w-full sm:w-auto shadow-premium-lg hover:shadow-premium-xl font-bold"
               >
                 다시 말하기
               </SeniorButton>
               
               <SeniorButton 
                 variant="success"
-                size="medium"
+                size="extra-large"
                 onClick={handleConfirmOrder}
                 icon={ArrowRight}
-                className="w-full sm:w-auto"
+                className="w-full sm:w-auto shadow-premium-xl hover:shadow-premium-2xl font-black text-xl"
               >
                 {t('order.confirm')}
               </SeniorButton>

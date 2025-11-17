@@ -1,11 +1,14 @@
+import type { Language } from '../contexts/LanguageContext';
+
 export interface MenuItem {
   id: string;
-  name: string;
+  name: string | Record<Language, string>;
   price: number;
   category: string;
   description?: string;
   imageUrl?: string;
   available: boolean;
+  keywords?: Record<Language, string[]>;
 }
 
 export interface OrderItem {

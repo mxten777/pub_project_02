@@ -92,20 +92,20 @@ const OrderConfirmPage: React.FC<OrderConfirmPageProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             <SeniorButton
               variant={selectedPayment === 'card' ? 'primary' : 'secondary'}
-              size="normal"
+              size="large"
               onClick={() => handlePaymentSelect('card')}
               icon={CreditCard}
-              className={`w-full ${selectedPayment === 'card' ? 'ring-4 ring-blue-500' : ''}`}
+              className={`w-full font-bold shadow-premium-lg hover:shadow-premium-xl ${selectedPayment === 'card' ? 'ring-4 ring-lime-500' : ''}`}
             >
               카드 결제
             </SeniorButton>
             
             <SeniorButton
               variant={selectedPayment === 'cash' ? 'primary' : 'secondary'}
-              size="normal"
+              size="large"
               onClick={() => handlePaymentSelect('cash')}
               icon={Banknote}
-              className={`w-full ${selectedPayment === 'cash' ? 'ring-4 ring-blue-500' : ''}`}
+              className={`w-full font-bold shadow-premium-lg hover:shadow-premium-xl ${selectedPayment === 'cash' ? 'ring-4 ring-lime-500' : ''}`}
             >
               현금 결제
             </SeniorButton>
@@ -120,17 +120,19 @@ const OrderConfirmPage: React.FC<OrderConfirmPageProps> = ({
             onClick={onBack}
             icon={ArrowLeft}
             disabled={isProcessing || isSpeaking}
+            className="font-bold shadow-premium-lg hover:shadow-premium-xl"
           >
             수정하기
           </SeniorButton>
           
           <SeniorButton
             variant="success"
-            size="large"
+            size="extra-large"
             onClick={handleConfirmPayment}
             icon={CheckCircle}
             disabled={!selectedPayment || isProcessing || isSpeaking}
             loading={isProcessing}
+            className="font-black shadow-premium-xl hover:shadow-premium-2xl"
           >
             결제 하기
           </SeniorButton>

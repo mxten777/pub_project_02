@@ -40,21 +40,21 @@ const SeniorButton: React.FC<SeniorButtonProps> = ({
   };
 
   const sizeClasses = {
-    small: 'min-h-[3rem] sm:min-h-[4rem] min-w-[8rem] sm:min-w-[10rem] text-senior-sm sm:text-senior-base px-4 sm:px-6 py-2 sm:py-3',
-    medium: 'min-h-[3.5rem] sm:min-h-[4.5rem] min-w-[9rem] sm:min-w-[11rem] text-senior-base sm:text-senior-lg px-5 sm:px-7 py-3 sm:py-4',
-    normal: 'min-h-[4rem] sm:min-h-[5.5rem] min-w-[10rem] sm:min-w-[14rem] text-senior-base sm:text-senior-lg px-6 sm:px-8 py-4 sm:py-5',
-    large: 'min-h-[5rem] sm:min-h-[7rem] min-w-[12rem] sm:min-w-[18rem] text-senior-lg sm:text-senior-xl px-8 sm:px-12 py-5 sm:py-8',
-    'extra-large': 'min-h-[6rem] sm:min-h-[9rem] min-w-[14rem] sm:min-w-[22rem] text-senior-xl sm:text-senior-2xl px-10 sm:px-16 py-6 sm:py-10'
+    small: 'h-[4rem] min-w-[10rem] max-w-[12rem] text-senior-base font-bold px-4 py-3',
+    medium: 'h-[4rem] min-w-[12rem] max-w-[14rem] text-senior-base font-bold px-4 py-3',
+    normal: 'h-[4rem] min-w-[14rem] max-w-[16rem] text-senior-base font-bold px-4 py-3',
+    large: 'h-[4rem] min-w-[16rem] max-w-[20rem] text-senior-lg font-bold px-6 py-3',
+    'extra-large': 'h-[4rem] min-w-[18rem] max-w-[24rem] text-senior-lg font-black px-6 py-3'
   };
 
   const getIconSize = () => {
     switch (size) {
-      case 'small': return 20;
-      case 'medium': return 22;
-      case 'normal': return 24;
+      case 'small': return 22;
+      case 'medium': return 24;
+      case 'normal': return 26;
       case 'large': return 28;
-      case 'extra-large': return 36;
-      default: return 24;
+      case 'extra-large': return 32;
+      default: return 26;
     }
   };
 
@@ -82,24 +82,24 @@ const SeniorButton: React.FC<SeniorButtonProps> = ({
       {/* 버튼 내부 그라데이션 오버레이 */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       
-      {/* 버튼 컨텐츠 */}
-      <div className="relative flex items-center justify-center gap-3 font-semibold">
+      {/* 버튼 컴텐츠 */}
+      <div className="relative flex items-center justify-center font-semibold">
         {loading ? (
-          <>
+          <div className="flex items-center gap-2">
             <div className="loading-spinner" />
             <span>{children}</span>
             <span className="sr-only">로딩 중</span>
-          </>
+          </div>
         ) : (
-          <>
+          <div className="flex items-center gap-3 w-full justify-center">
             {Icon && (
               <Icon 
                 size={getIconSize()} 
-                className="transition-transform duration-200 group-hover:scale-110" 
+                className="transition-transform duration-200 group-hover:scale-110 flex-shrink-0" 
               />
             )}
-            <span className="transition-all duration-200">{children}</span>
-          </>
+            <span className="transition-all duration-200 whitespace-nowrap">{children}</span>
+          </div>
         )}
       </div>
       
